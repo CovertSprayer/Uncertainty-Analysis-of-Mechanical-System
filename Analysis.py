@@ -34,7 +34,8 @@ for i in range(n):
     k_temp[i:i+2, i:i+2] = k_local
     k_global += k_temp
 
-print("Global Stiffness Matrix: " , k_global)
+print("\n\nGlobal Stiffness Matrix: ")
+print(k_global)
 k_global = n*((A*E)/L)*k_global
 
 
@@ -50,14 +51,13 @@ F[-1] = P
 # displacement matrix
 u = np.linalg.solve(k_global,F)
 
-print("Displacement in element: ", u)
+print("\n\nDisplacement in element: ", u)
 
 
 ########------------Stress Calculation---------##########
 
 #Stress matrix
 S = u.copy()
-print(S)
 
 for i in range(n-1):
     S[i+1] = S[i+1] - u[i]
@@ -65,7 +65,7 @@ for i in range(n-1):
 
 l = L/n         #length of element
 S = (E/l)*S
-print("stress in element: ",S) 
+print("\n\nstress in element: ",S) 
 
 
 ########------------Saving output to txt file--------##########
